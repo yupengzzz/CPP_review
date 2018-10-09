@@ -27,9 +27,12 @@ int main()
 	CounterType c2(3);
 	cout << "Counter #1 is " << c1.getCount() << endl
 		<< "Counter #2 is " << c2.outStream(cout) << endl;
-
+	
+	//Counter c1 will be modifies in the loop
+	//Counter c2 stays as a constant
 	do
 	{
+		//User is asked to either ++, --, or exit
 		cout << "Current count in c1 is " << c1.getCount() << endl;
 		if(equal(c1, c2))
 			cout << "c1 and c2 are equal" << endl;
@@ -62,6 +65,7 @@ void CounterType::increment()
 }
 void CounterType::decrement()
 {
+	//Counter value must be non-negative
 	if(c > 0)
 		c = c-1;
 	else

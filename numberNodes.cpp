@@ -19,6 +19,25 @@ void headInsert(ListNodePtr& head)
 	head = temp;
 }
 
+ListNodePtr searchNode(ListNodePtr head, int n)
+{
+	//Function searchs for a node containing the given number
+	//	and returns the pointer pointing to that node
+	//The nullptr is returned if target DNE
+	if(head == nullptr)
+		return nullptr;
+	else
+	{
+		ListNodePtr here = head;
+		while(here->number != n && here->next != nullptr)
+			here = here->next;
+		if(here->number == n)
+			return here;
+		else
+			return nullptr;
+	}
+}
+
 void dispData(ListNodePtr& head)
 {
 	//Displays the current data stored in nodes to the console
@@ -59,6 +78,13 @@ int main()
 	cout << endl << "An instance of head insertion: " << endl;
 	headInsert(head);
 	dispData(head);
-
+	
+	cout << endl << "An instance of searching: " << endl;
+	int n = 0;
+	cout << "Enter the number you want to search for: ";
+	cin >> n;
+	ListNodePtr found = searchNode(head, n);
+	cout << "Point to address " << found << endl;
+	
 	return 0;
 }

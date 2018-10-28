@@ -9,6 +9,26 @@ struct ListNode
 };
 typedef ListNode* ListNodePtr;
 
+void headInsert(ListNodePtr& head)
+{
+	//Function inserts a new node from the head
+	ListNodePtr temp = new ListNode;
+	cout << "Enter the inserted number: ";
+	cin >> temp->number;
+	temp->next = head;
+	head = temp;
+}
+
+void dispData(ListNodePtr& head)
+{
+	//Displays the current data stored in nodes to the console
+	cout << "Number stored are as follows: ";
+	for(ListNodePtr ite = head; ite != nullptr; ite = ite->next)
+	{
+		cout << ite->number << " ";
+	}
+}
+
 int main()
 {
 	int count = 0;
@@ -34,11 +54,11 @@ int main()
 		}
 	}
 
-	cout << "Number stored are as follows: ";
-	for(ite = head; ite != nullptr; ite = ite->next)
-	{
-		cout << ite->number << " ";
-	}
+	dispData(head);
+
+	cout << endl << "An instance of head insertion: " << endl;
+	headInsert(head);
+	dispData(head);
 
 	return 0;
 }

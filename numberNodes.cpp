@@ -38,6 +38,27 @@ ListNodePtr searchNode(ListNodePtr head, int n)
 	}
 }
 
+int removeNode(ListNodePtr head, int n)
+{
+	//User enters the number contained in the node, and
+	// the corresponding node is removed.
+	ListNodePtr ite = head;
+	ListNodePtr discard = ite->next;
+	for(ite = head; ite != nullptr; ite = ite->next)
+	{
+		discard = ite->next;
+		if(discard->number == n)
+		{
+			ite->next = discard->next;
+			delete discard;
+			cout << n << " has been successfully removed." << endl;
+			return 0;
+		}
+	}
+	cout << "The number is not in the list." << endl;
+	return 1;
+}
+
 void dispData(ListNodePtr& head)
 {
 	//Displays the current data stored in nodes to the console
@@ -86,5 +107,11 @@ int main()
 	ListNodePtr found = searchNode(head, n);
 	cout << "Point to address " << found << endl;
 	
+	cout << endl << "An instance of removing node: " << endl;
+	cout << "Enter the number to be deleted: ";
+	cin >> n;
+	removeNode(head, n);
+	dispData(head);
+
 	return 0;
 }

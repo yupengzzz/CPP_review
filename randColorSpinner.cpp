@@ -8,7 +8,7 @@
 //
 // Operations:
 // int spin()
-//		Preconditions: number holder n is declared
+//		Preconditions: number holder n is declared as static
 //		Postconditions: a random value between 1 and 5
 //		Returns: the value generated
 //
@@ -26,11 +26,13 @@
 #include<stdlib.h> //srand, rand
 using namespace std;
 
-int spin(int n)
+int spin()
 {
+	static int n = 0;
 	srand(n);
-	n = rand() % 5 + 1;
-	return n;
+	n = rand();
+	int a = n % 5 + 1;
+	return a;
 }
 
 string intToColor(int n)
@@ -65,7 +67,7 @@ void autoSpin()
 
 	for(i = 0; i < m; i++)
 	{
-		a = spin(a);
+		a = spin();
 		if (a == 1)
 			red++;
 		else if (a == 2)
@@ -98,7 +100,7 @@ int main()
 			break;
 		cin.clear();
 
-		n = spin(n);
+		n = spin();
 		color = intToColor(n);
 		cout << "The color spinned is " << color << endl;
 	}while(1);
